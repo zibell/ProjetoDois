@@ -8,74 +8,69 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-public class CursoEntity implements Serializable {
-	/**
-	 * 
-	 */
+public class ServerEntity implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private String nivel;
-	private String turno;
+	private String email;
 	
-	@JsonIgnore//curso é a propriedade da classe relacionada
-	@OneToMany(mappedBy="curso")
-	private List<TurmaEntity> turma = new ArrayList<>();
+	@JsonIgnore
+	private String senha;
 	
-	public CursoEntity(Integer id, String nome, String nivel, String turno) {
+	
+	public ServerEntity() {
+		super();
+	}
+
+	public ServerEntity(Integer id, String nome, String email, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.nivel = nivel;
-		this.turno = turno;
+		this.email = email;
+		this.senha = senha;
 	}
-	public CursoEntity() {
-		super();
-		
-	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getNivel() {
-		return nivel;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setNivel(String nivel) {
-		this.nivel = nivel;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getTurno() {
-		return turno;
+
+	public String getSenha() {
+		return senha;
 	}
-	public void setTurno(String turno) {
-		this.turno = turno;
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
-	
-	public List<TurmaEntity> getTurma() {
-		return turma;
-	}
-	public void setTurma(List<TurmaEntity> turma) {
-		this.turma = turma;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -83,6 +78,7 @@ public class CursoEntity implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -91,7 +87,7 @@ public class CursoEntity implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CursoEntity other = (CursoEntity) obj;
+		ServerEntity other = (ServerEntity) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -101,5 +97,5 @@ public class CursoEntity implements Serializable {
 	}
 	
 	
-
+	
 }
