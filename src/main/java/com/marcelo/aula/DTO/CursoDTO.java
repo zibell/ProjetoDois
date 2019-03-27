@@ -2,15 +2,31 @@ package com.marcelo.aula.DTO;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.marcelo.aula.entity.CursoEntity;
 
 public class CursoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+	//Bean Validation java 7
+	@NotEmpty(message="Este campo não pode estar em branco!!")
+	@Length(min=1, max=100, message="O nome deve conter entre 1 e 100 caracteres")
 	private String nome;
 	private String nivel;
+	private String turno;
 	
+	public String getTurno() {
+		return turno;
+	}
+
+	public void setTurno(String turno) {
+		this.turno = turno;
+	}
+
 	public CursoDTO() {
 		
 	}
